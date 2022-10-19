@@ -1,4 +1,5 @@
 #![allow(unused_variables, dead_code)]
+use std::mem;
 #[derive(Debug)]
 pub struct List<T> {
     head_node: Pointer<T>,
@@ -22,16 +23,19 @@ impl<T> List<T> {
     }
 
     fn push(&mut self, value: T) {
-        let new_node = Node {
+        let new_node = Box::new(Node {
             value,
-            next: Pointer::Empty,
-        };
-        self.head_node = Pointer::Elem(Box::new(new_node));
+            next: mem::replace(&mut self.head_node, Pointer::Empty),
+        });
+        self.head_node = Pointer::Elem(new_node)
     }
 }
 
 fn main() {
-    let mut list: List<i32> = List::new();
-    list.push(1);
+    let mut list: List<String> = List::new();
+    list.push("Hello".to_owned());
+    list.push(", ".to_owned());
+    list.push("world".to_owned());
+    list.push("!".to_owned());
     println!("{:#?}", list)
 }
