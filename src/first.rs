@@ -14,15 +14,24 @@ struct Node<T> {
     next: Pointer<T>,
 }
 
+impl<T> List<T> {
+    fn new() -> Self {
+        List {
+            head_node: Pointer::Empty,
+        }
+    }
+
+    fn push(&mut self, value: T) {
+        let new_node = Node {
+            value,
+            next: Pointer::Empty,
+        };
+        self.head_node = Pointer::Elem(Box::new(new_node));
+    }
+}
+
 fn main() {
-    let list = List {
-        head_node: Pointer::Elem(Box::new(Node {
-            value: 1,
-            next: Pointer::Elem(Box::new(Node {
-                value: 2,
-                next: Pointer::Empty,
-            })),
-        })),
-    };
+    let mut list: List<i32> = List::new();
+    list.push(1);
     println!("{:#?}", list)
 }
