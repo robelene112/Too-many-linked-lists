@@ -9,7 +9,7 @@
 <p>This implementation: <br>
 1) never allocates unused memory on the heap in the tail node;<br>
 2) makes use of null-pointer optimization;<br>
-3) allocates all nodes on the heap uniformly (instead of having the first node allocated on the stack);
+3) allocates all nodes on the heap uniformly (instead of having the first node allocated on the stack);<br>
 4) uses i32 type for the node value.</p>
 
 </p>
