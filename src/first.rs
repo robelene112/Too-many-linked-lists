@@ -29,6 +29,22 @@ impl List {
         });
         self.head_node = Pointer::Elem(new_node)
     }
+
+    pub fn pop(&mut self) -> Option<i32> {
+        let value;
+        match mem::replace(&mut self.head_node, Pointer::Empty) {
+            Pointer::Empty => {
+                value = None;
+            }
+
+            Pointer::Elem(node) => {
+                value = Some(node.value);
+                self.head_node = node.next;
+            }
+        };
+
+        value
+    }
 }
 
 fn main() {
@@ -37,5 +53,6 @@ fn main() {
     list.push(2);
     list.push(3);
     list.push(4);
-    println!("{:#?}", list)
+    let value = list.pop();
+    println!("{:#?}, {:#?}", list, value)
 }
