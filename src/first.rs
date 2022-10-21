@@ -16,13 +16,13 @@ struct Node {
 }
 
 impl List {
-    fn new() -> Self {
+    pub fn new() -> Self {
         List {
             head_node: Pointer::Empty,
         }
     }
 
-    fn push(&mut self, value: i32) {
+    pub fn push(&mut self, value: i32) {
         let new_node = Box::new(Node {
             value,
             next: mem::replace(&mut self.head_node, Pointer::Empty),
