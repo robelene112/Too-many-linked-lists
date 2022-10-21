@@ -40,6 +40,17 @@ impl List {
             }
         }
     }
+
+    pub fn vecify_list(&mut self) -> Vec<i32> {
+        let mut result = vec![];
+        let mut headnode = mem::replace(&mut self.head_node, Pointer::Empty);
+        while let Pointer::Elem(mut boxed_node) = headnode {
+            result.push(boxed_node.value);
+            headnode = mem::replace(&mut boxed_node.next, Pointer::Empty)
+        }
+
+        result
+    }
 }
 
 fn main() {
@@ -49,5 +60,7 @@ fn main() {
     list.push(3);
     list.push(4);
     let value = list.pop();
-    println!("{:#?}, {:#?}", list, value)
+    println!("{:#?}, {:#?}", list, value);
+
+    println!("{:?}", list.vecify_list());
 }
