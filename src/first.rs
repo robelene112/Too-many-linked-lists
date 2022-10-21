@@ -31,19 +31,14 @@ impl List {
     }
 
     pub fn pop(&mut self) -> Option<i32> {
-        let value;
         match mem::replace(&mut self.head_node, Pointer::Empty) {
-            Pointer::Empty => {
-                value = None;
-            }
+            Pointer::Empty => None,
 
             Pointer::Elem(node) => {
-                value = Some(node.value);
                 self.head_node = node.next;
+                Some(node.value)
             }
-        };
-
-        value
+        }
     }
 }
 
