@@ -1,5 +1,4 @@
 #![allow(unused_variables, dead_code)]
-use std::mem;
 #[derive(Debug)]
 pub struct List {
     head_node: Pointer,
