@@ -26,14 +26,10 @@ impl List {
     }
 
     pub fn pop(&mut self) -> Option<i32> {
-        match self.head_node.take() {
-            None => None,
-
-            Some(node) => {
-                self.head_node = node.next;
-                Some(node.value)
-            }
-        }
+        self.head_node.take().map(|node| {
+            self.head_node = node.next;
+            node.value
+        })
     }
 
     pub fn vecify_list(&mut self) -> Vec<i32> {
