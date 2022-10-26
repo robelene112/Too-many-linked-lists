@@ -1,5 +1,6 @@
 #![allow(unused_variables, dead_code)]
 pub mod first;
+pub mod second;
 
 #[cfg(test)]
 mod test {

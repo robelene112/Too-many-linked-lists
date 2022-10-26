@@ -8,5 +8,5 @@ edition = "2021"
 [dependencies]
 
 [[bin]]
-name = "first"
-path = "./src/first.rs"
+name = "second"
+path = "./src/second.rs"
